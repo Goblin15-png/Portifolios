@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Execucao do Projeto - Bernardo Diniz Balduino</title>
+  
+  <link rel="stylesheet" href="../css/blueprint.css">
+
+  <style>
+    .conteudo-visualizador {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 50px;
+    }
+
+    .barra-topo-visualizador {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+      background: var(--fundo-cartao);
+      border: 1.5px solid var(--linha-normal);
+      border-radius: 4px;
+      padding: 14px 18px;
+    }
+
+    .botao-voltar {
+      color: var(--texto-principal);
+      text-decoration: none;
+      font-family: var(--fonte-codigo);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--linha-suave);
+      border-radius: 3px;
+      background: var(--fundo-etiqueta);
+      transition: all 0.2s;
+    }
+
+    .botao-voltar:hover {
+      border-color: var(--linha-destaque);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .linha-titulo-projeto {
+      margin-bottom: 20px;
+    }
+
+    .linha-titulo-projeto h1 {
+      font-family: var(--fonte-codigo);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--texto-principal);
+      margin-bottom: 6px;
+    }
+
+    .linha-etiquetas-projeto {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* CONTAINER DIVIDIDO */
+    .divisor-visualizador {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .divisor-visualizador {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* PAINEL DO PROJETO COM DESTAQUE VISUAL */
+    .painel-execucao {
+      background: var(--fundo-cartao);
+      border: 2px solid var(--linha-normal);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .cabecalho-abas-execucao {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--fundo-elevado);
+      border-bottom: 1.5px solid var(--linha-normal);
+      padding: 0 12px;
+      flex-wrap: wrap;
+    }
+
+    .grupo-botoes-visualizacao {
+      display: flex;
+    }
+
+    .botao-aba-execucao {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--texto-opaco);
+      font-family: var(--fonte-codigo);
+      font-size: 13px;
+      padding: 12px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .botao-aba-execucao:hover {
+      color: var(--texto-principal);
+    }
+
+    .botao-aba-execucao.ativo {
+      color: var(--texto-principal);
+      border-bottom-color: var(--linha-destaque);
+      background: var(--fundo-etiqueta);
+      font-weight: 700;
+    }
+
+    .ferramentas-rapidas {
+      display: flex;
+      gap: 8px;
+    }
+
+    .botao-ferramenta {
+      background: transparent;
+      border: 1px solid var(--linha-suave);
+      border-radius: 3px;
+      color: var(--texto-opaco);
+      font-family: var(--fonte-codigo);
+      font-size: 11px;
+      padding: 6px 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .botao-ferramenta:hover {
+      border-color: var(--linha-destaque);
+      color: var(--texto-principal);
+    }
+
+    /* MOLDURA E AMBIENTE DE EXECUCAO COM ALTO CONTRASTE */
+    .barra-moldura-execucao {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #040d1a;
+      padding: 6px 14px;
+      font-family: var(--fonte-codigo);
+      font-size: 11px;
+      color: #9bbcdb;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    [data-tema="claro"] .barra-moldura-execucao {
+      background: #e2e8f0;
+      color: #1e3d63;
+      border-bottom: 1px solid rgba(16, 55, 102, 0.2);
+    }
+
+    .indicador-status-execucao {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ponto-status-verde {
+      width: 8px;
+      height: 8px;
+      background-color: var(--texto-sucesso);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* JANELA DE EXECUÇÃO AO VIVO COM CONTRASTE CLARO */
+    .janela-execucao-ao-vivo {
+      height: 560px;
+      background: #051326;
+      border: 3px solid rgba(255, 255, 255, 0.35);
+      margin: 12px;
+      border-radius: 3px;
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    [data-tema="claro"] .janela-execucao-ao-vivo {
+      background: #ffffff;
+      border: 3px solid rgba(16, 55, 102, 0.3);
+      box-shadow: inset 0 0 15px rgba(16, 55, 102, 0.08);
+    }
+
+    .janela-execucao-ao-vivo iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* JANELA DE CÓDIGO FONTE */
+    .janela-codigo-fonte {
+      display: none;
+      height: 560px;
+      background: #051326;
+      border: 3px solid rgba(255, 255, 255, 0.35);
+      margin: 12px;
+      border-radius: 3px;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    [data-tema="claro"] .janela-codigo-fonte {
+      background: #ffffff;
+      border: 3px solid rgba(16, 55, 102, 0.3);
+    }
+
+    .navegacao-arquivos-codigo {
+      display: flex;
+      border-bottom: 1px solid var(--linha-suave);
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0 8px;
+    }
+
+    [data-tema="claro"] .navegacao-arquivos-codigo {
+      background: #eef2f7;
+    }
+
+    .botao-arquivo-codigo {
+      background: transparent;
+      border: none;
+      color: var(--texto-opaco);
+      font-family: var(--fonte-codigo);
+      font-size: 12px;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .botao-arquivo-codigo.ativo {
+      color: var(--texto-principal);
+      background: var(--fundo-etiqueta);
+      border-bottom: 2px solid var(--linha-destaque);
+      font-weight: 700;
+    }
+
+    .caixa-texto-codigo {
+      flex: 1;
+      overflow: auto;
+      padding: 20px;
+      margin: 0;
+      font-family: var(--fonte-codigo);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--texto-secundario);
+      white-space: pre;
+      tab-size: 2;
+    }
+
+    /* BARRA LATERAL */
+    .cartao-lateral {
+      background: var(--fundo-cartao);
+      border: 1.5px solid var(--linha-normal);
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--sombra-cartao);
+    }
+
+    .cartao-lateral h3 {
+      font-family: var(--fonte-codigo);
+      font-size: 13px;
+      color: var(--texto-principal);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--linha-suave);
+      padding-bottom: 8px;
+    }
+
+    .lista-destaques {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--texto-secundario);
+    }
+
+    .lista-destaques li {
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .lista-destaques li::before {
+      content: "-";
+      position: absolute;
+      left: 0;
+      color: var(--linha-destaque);
+    }
+  </style>
+</head>
+<body>
+  <div class="fundo-malha-blueprint"></div>
+
+  <div class="conteudo-visualizador">
+    
+    <!-- Barra Superior -->
+    <div class="barra-topo-visualizador">
+      <a href="../index.html#projetos" class="botao-voltar">
+        Voltar aos Projetos
+      </a>
+
+      <button id="botaoAlternarTema" class="botao-tema" title="Alternar entre modo claro e escuro">
+        <span id="textoModoTema">Modo Escuro</span>
+      </button>
+    </div>
+
+    <!-- Titulo e Etiquetas do Projeto -->
+    <div class="linha-titulo-projeto">
+      <h1 id="tituloProjeto">Carregando Projeto...</h1>
+      <div id="etiquetasProjeto" class="linha-etiquetas-projeto"></div>
+    </div>
+
+    <!-- Divisao Principal -->
+    <div class="divisor-visualizador">
+      <!-- Painel do Executor e Codigo -->
+      <div class="painel-execucao">
+        <div class="cabecalho-abas-execucao">
+          <div class="grupo-botoes-visualizacao">
+            <button class="botao-aba-execucao ativo" id="abaExecucaoAoVivo">Execucao ao Vivo</button>
+            <button class="botao-aba-execucao" id="abaVerCodigo">Ver Codigo</button>
+          </div>
+
+          <div class="ferramentas-rapidas">
+            <button class="botao-ferramenta" id="botaoRecarregar">Recarregar</button>
+            <a class="botao-ferramenta" id="botaoAbaExterna" target="_blank">Abrir em Nova Aba</a>
+          </div>
+        </div>
+
+        <!-- 1. Execucao ao vivo (com moldura de alto contraste) -->
+        <div id="containerExecucao">
+          <div class="barra-moldura-execucao">
+            <div class="indicador-status-execucao">
+              <span class="ponto-status-verde"></span>
+              <span>Ambiente de Execucao: Ativo</span>
+            </div>
+            <span>Interativo</span>
+          </div>
+          <div class="janela-execucao-ao-vivo">
+            <iframe id="iframeProjeto" src="" title="Projeto em Execucao"></iframe>
+          </div>
+        </div>
+
+        <!-- 2. Visualizador de codigo (carregamento garantido) -->
+        <div class="janela-codigo-fonte" id="containerCodigo">
+          <div class="navegacao-arquivos-codigo">
+            <button class="botao-arquivo-codigo ativo" data-arquivo="html">index.html</button>
+            <button class="botao-arquivo-codigo" data-arquivo="css">style.css</button>
+            <button class="botao-arquivo-codigo" data-arquivo="js">script.js</button>
+            <button class="botao-ferramenta" id="botaoCopiarCodigo" style="margin-left: auto; margin-right: 8px;">
+              Copiar Codigo
+            </button>
+          </div>
+          <pre class="caixa-texto-codigo"><code id="conteudoCodigo">Carregando codigo...</code></pre>
+        </div>
+      </div>
+
+      <!-- Barra Lateral com Informacoes -->
+      <aside>
+        <div class="cartao-lateral">
+          <h3>Sobre este Projeto</h3>
+          <p id="resumoProjeto" style="font-size: 13px; color: var(--texto-secundario); line-height: 1.6;">
+            Carregando detalhes...
+          </p>
+        </div>
+
+        <div class="cartao-lateral">
+          <h3>Funcionalidades</h3>
+          <ul class="lista-destaques" id="listaDestaques">
+            <li>Carregando...</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/projects-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      inicializarTema();
+      carregarProjeto();
+      inicializarAbas();
+    });
+
+    let projetoAtual = null;
+    let cacheCodigo = { html: '', css: '', js: '' };
+    let arquivoCodigoAtual = 'html';
+
+    function inicializarTema() {
+      const temaSalvo = localStorage.getItem('tema-blueprint') || 'escuro';
+      document.documentElement.setAttribute('data-tema', temaSalvo);
+      atualizarTextoTema(temaSalvo);
+
+      const botaoTema = document.getElementById('botaoAlternarTema');
+      botaoTema.addEventListener('click', () => {
+        const temaAtual = document.documentElement.getAttribute('data-tema') || 'escuro';
+        const novoTema = temaAtual === 'escuro' ? 'claro' : 'escuro';
+        document.documentElement.setAttribute('data-tema', novoTema);
+        localStorage.setItem('tema-blueprint', novoTema);
+        atualizarTextoTema(novoTema);
+        
+        const iframe = document.getElementById('iframeProjeto');
+        if (iframe && iframe.contentDocument) {
+          iframe.contentDocument.documentElement.setAttribute('data-tema', novoTema);
+        }
+      });
+    }
+
+    function atualizarTextoTema(tema) {
+      document.getElementById('textoModoTema').textContent = tema === 'escuro' ? 'Modo Escuro' : 'Modo Claro';
+    }
+
+    function carregarProjeto() {
+      const parametros = new URLSearchParams(window.location.search);
+      const idProjeto = parametros.get('id') || 'calculadora-blueprint';
+
+      projetoAtual = PROJETOS_DADOS.find(p => p.id === idProjeto) || PROJETOS_DADOS[0];
+
+      document.title = `${projetoAtual.titulo} - Bernardo Diniz Balduino`;
+      document.getElementById('tituloProjeto').textContent = projetoAtual.titulo;
+      document.getElementById('resumoProjeto').textContent = projetoAtual.resumo;
+
+      document.getElementById('etiquetasProjeto').innerHTML = projetoAtual.etiquetas
+        .map(t => `<span class="etiqueta-tecnologia">${t}</span>`).join('');
+
+      document.getElementById('listaDestaques').innerHTML = projetoAtual.destaques
+        .map(d => `<li>${d}</li>`).join('');
+
+      const iframe = document.getElementById('iframeProjeto');
+      const urlProjeto = `../${projetoAtual.caminho}`;
+      iframe.src = urlProjeto;
+
+      document.getElementById('botaoAbaExterna').href = urlProjeto;
+
+      document.getElementById('botaoRecarregar').addEventListener('click', () => {
+        iframe.src = urlProjeto;
+      });
+
+      // Carrega o código garantido
+      carregarArquivosCodigo();
+    }
+
+    function carregarArquivosCodigo() {
+      // 1. Prioridade: Codigo embutido diretamente na base de dados
+      if (projetoAtual && projetoAtual.codigoFonte) {
+        cacheCodigo.html = projetoAtual.codigoFonte.html || '';
+        cacheCodigo.css = projetoAtual.codigoFonte.css || '';
+        cacheCodigo.js = projetoAtual.codigoFonte.js || '';
+        exibirCodigo(arquivoCodigoAtual);
+        return;
+      }
+
+      // 2. Fallback via fetch se necessario
+      const base = `../projects/${projetoAtual.pasta}/`;
+      Promise.all([
+        fetch(`${base}index.html`).then(r => r.text()).catch(() => ''),
+        fetch(`${base}style.css`).then(r => r.text()).catch(() => ''),
+        fetch(`${base}script.js`).then(r => r.text()).catch(() => '')
+      ]).then(([resHtml, resCss, resJs]) => {
+        cacheCodigo.html = resHtml;
+        cacheCodigo.css = resCss;
+        cacheCodigo.js = resJs;
+        exibirCodigo(arquivoCodigoAtual);
+      });
+    }
+
+    function exibirCodigo(tipoArquivo) {
+      arquivoCodigoAtual = tipoArquivo;
+      const elementoCodigo = document.getElementById('conteudoCodigo');
+      elementoCodigo.textContent = cacheCodigo[tipoArquivo] || 'Codigo indisponivel no momento.';
+    }
+
+    function inicializarAbas() {
+      const botaoExecucao = document.getElementById('abaExecucaoAoVivo');
+      const botaoCodigo = document.getElementById('abaVerCodigo');
+      const containerExecucao = document.getElementById('containerExecucao');
+      const containerCodigo = document.getElementById('containerCodigo');
+
+      botaoExecucao.addEventListener('click', () => {
+        botaoExecucao.classList.add('ativo');
+        botaoCodigo.classList.remove('ativo');
+        containerExecucao.style.display = 'block';
+        containerCodigo.style.display = 'none';
+      });
+
+      botaoCodigo.addEventListener('click', () => {
+        botaoCodigo.classList.add('ativo');
+        botaoExecucao.classList.remove('ativo');
+        containerExecucao.style.display = 'none';
+        containerCodigo.style.display = 'flex';
+        // Garante que exibe o código do arquivo selecionado
+        exibirCodigo(arquivoCodigoAtual);
+      });
+
+      document.querySelectorAll('.botao-arquivo-codigo').forEach(botao => {
+        botao.addEventListener('click', () => {
+          document.querySelectorAll('.botao-arquivo-codigo').forEach(b => b.classList.remove('ativo'));
+          botao.classList.add('ativo');
+          exibirCodigo(botao.getAttribute('data-arquivo'));
+        });
+      });
+
+      const botaoCopiar = document.getElementById('botaoCopiarCodigo');
+      botaoCopiar.addEventListener('click', () => {
+        const texto = cacheCodigo[arquivoCodigoAtual];
+        if (texto) {
+          navigator.clipboard.writeText(texto).then(() => {
+            botaoCopiar.textContent = 'Copiado!';
+            setTimeout(() => { botaoCopiar.textContent = 'Copiar Codigo'; }, 2000);
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

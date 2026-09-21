@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Científica Blueprint</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="calculator-body">
+  <div class="calculator-unit">
+    <div class="calc-header">
+      <div class="calc-title">
+        <span class="calc-code">MOD-CALC // 01</span>
+        <h2>CALCULADORA DE PRECISÃO</h2>
+      </div>
+      <div class="calc-status">STATUS: ONLINE</div>
+    </div>
+
+    <!-- Visor da Calculadora -->
+    <div class="calc-display-box">
+      <div class="calc-history" id="calcHistory">&nbsp;</div>
+      <div class="calc-current" id="calcCurrent">0</div>
+    </div>
+
+    <!-- Teclado da Calculadora -->
+    <div class="calc-keypad">
+      <button class="calc-btn btn-fn" data-action="clear">AC</button>
+      <button class="calc-btn btn-fn" data-action="backspace">DEL</button>
+      <button class="calc-btn btn-fn" data-action="percent">%</button>
+      <button class="calc-btn btn-op" data-action="op" data-val="/">÷</button>
+
+      <button class="calc-btn btn-fn" data-action="sqrt">√</button>
+      <button class="calc-btn btn-fn" data-action="pow">x²</button>
+      <button class="calc-btn btn-fn" data-action="paren-open">(</button>
+      <button class="calc-btn btn-op" data-action="op" data-val="*">×</button>
+
+      <button class="calc-btn btn-num" data-action="num" data-val="7">7</button>
+      <button class="calc-btn btn-num" data-action="num" data-val="8">8</button>
+      <button class="calc-btn btn-num" data-action="num" data-val="9">9</button>
+      <button class="calc-btn btn-op" data-action="op" data-val="-">-</button>
+
+      <button class="calc-btn btn-num" data-action="num" data-val="4">4</button>
+      <button class="calc-btn btn-num" data-action="num" data-val="5">5</button>
+      <button class="calc-btn btn-num" data-action="num" data-val="6">6</button>
+      <button class="calc-btn btn-op" data-action="op" data-val="+">+</button>
+
+      <button class="calc-btn btn-num" data-action="num" data-val="1">1</button>
+      <button class="calc-btn btn-num" data-action="num" data-val="2">2</button>
+      <button class="calc-btn btn-num" data-action="num" data-val="3">3</button>
+      <button class="calc-btn btn-equals" data-action="equals" rowspan="2">=</button>
+
+      <button class="calc-btn btn-num btn-zero" data-action="num" data-val="0">0</button>
+      <button class="calc-btn btn-num" data-action="dot">.</button>
+      <button class="calc-btn btn-fn" data-action="paren-close">)</button>
+    </div>
+
+    <div class="calc-footer-note">
+      ENGINEERING SPEC // REV 1.4 // TECLADO SUPORTADO
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

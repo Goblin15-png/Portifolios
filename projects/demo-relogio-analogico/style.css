@@ -1,0 +1,290 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+:root {
+  --bg-color: #051326;
+  --panel-bg: #0f3563;
+  --border-color: #ffffff;
+  --dial-bg: #030b17;
+  --text-main: #ffffff;
+  --text-muted: #9bbcdb;
+  --grid-line: rgba(255, 255, 255, 0.07);
+  --hand-hour: #ffffff;
+  --hand-min: #e0ecf8;
+  --hand-sec: #f87171;
+}
+
+[data-tema="claro"],
+[data-theme="light"] {
+  --bg-color: #e5edf7;
+  --panel-bg: #ffffff;
+  --border-color: #103766;
+  --dial-bg: #e8eef5;
+  --text-main: #0c2647;
+  --text-muted: #506f94;
+  --grid-line: rgba(16, 55, 102, 0.08);
+  --hand-hour: #0c2647;
+  --hand-min: #1e3d63;
+  --hand-sec: #dc2626;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.clock-unit {
+  width: 100%;
+  max-width: 440px;
+  background: var(--panel-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+}
+
+.unit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.unit-code {
+  font-size: 10px;
+  color: var(--text-muted);
+  display: block;
+}
+
+.unit-header h2 {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.clock-status {
+  font-size: 9px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+/* MOSTRADOR ANALÓGICO */
+.dial-container {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 20px;
+}
+
+.clock-dial {
+  width: 240px;
+  height: 240px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--dial-bg);
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.dial-crosshair {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.dial-crosshair::before,
+.dial-crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .dial-crosshair::before,
+[data-theme="light"] .dial-crosshair::after {
+  background: rgba(16, 55, 102, 0.1);
+}
+
+.dial-crosshair::before {
+  top: 50%; left: 10px; right: 10px; height: 1px;
+}
+.dial-crosshair::after {
+  left: 50%; top: 10px; bottom: 10px; width: 1px;
+}
+
+.dial-center-cap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--text-main);
+  border: 2px solid var(--dial-bg);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* MARCADORES HORÁRIOS */
+.dial-mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 10px;
+  background: var(--text-muted);
+  transform-origin: 50% 110px;
+}
+
+.dial-mark.major {
+  height: 14px;
+  width: 2.5px;
+  background: var(--text-main);
+}
+
+/* PONTEIROS */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(0deg);
+  border-radius: 2px 2px 0 0;
+}
+
+.hand-hour {
+  width: 4px;
+  height: 60px;
+  background: var(--hand-hour);
+  z-index: 4;
+}
+
+.hand-minute {
+  width: 3px;
+  height: 85px;
+  background: var(--hand-min);
+  z-index: 5;
+}
+
+.hand-second {
+  width: 1.5px;
+  height: 98px;
+  background: var(--hand-sec);
+  z-index: 6;
+}
+
+/* VISOR DIGITAL */
+.digital-display {
+  background: var(--dial-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.display-mode-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.time-readout {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 2px;
+}
+
+/* CONTROLES DO CRONÔMETRO */
+.stopwatch-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mode-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  color: var(--text-main);
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+
+.mode-btn:hover {
+  background: var(--text-main);
+  color: var(--bg-color);
+}
+
+.stopwatch-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.action-btn-ctrl {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  color: var(--text-main);
+  padding: 8px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn-ctrl:hover {
+  background: var(--text-main);
+  color: var(--bg-color);
+}
+
+/* LAPS */
+.laps-list-box {
+  margin-top: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 8px;
+}
+
+.laps-header {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+}
+
+.laps-container {
+  max-height: 100px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.lap-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}

@@ -1,0 +1,574 @@
+/* ==========================================================================
+   PORTFOLIO BLUEPRINT - ESTILOS COMPLETOS & OTIMIZADOS
+   Bernardo Diniz Balduino - Analise e Desenvolvimento de Sistemas (ADS)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIAVEIS DE TEMA (MODO ESCURO E MODO CLARO)
+   ========================================================================== */
+:root {
+  --transicao-tema: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  --fonte-codigo: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+  --fonte-texto: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Modo Escuro (Cianotipo Tradicional de Engenharia) */
+[data-tema="escuro"] {
+  color-scheme: dark;
+  --fundo-blueprint: #103766;
+  --fundo-cartao: #0c2d54;
+  --fundo-elevado: #153e70;
+  --fundo-codigo: #051326;
+  --grade-subdivisao: rgba(255, 255, 255, 0.07);
+  --grade-principal: rgba(255, 255, 255, 0.14);
+  --linha-suave: rgba(255, 255, 255, 0.18);
+  --linha-normal: rgba(255, 255, 255, 0.35);
+  --linha-destaque: #ffffff;
+  --texto-principal: #ffffff;
+  --texto-secundario: #e0ecf8;
+  --texto-opaco: #9bbcdb;
+  --texto-sucesso: #86efac;
+  --fundo-etiqueta: rgba(255, 255, 255, 0.08);
+  --sombra-cartao: 0 6px 20px rgba(4, 16, 32, 0.4);
+}
+
+/* Modo Claro (Whiteprint / Papel de Desenho Tecnico) */
+[data-tema="claro"] {
+  color-scheme: light;
+  --fundo-blueprint: #f2f5f9;
+  --fundo-cartao: #ffffff;
+  --fundo-elevado: #f8fafc;
+  --fundo-codigo: #ffffff;
+  --grade-subdivisao: rgba(16, 55, 102, 0.06);
+  --grade-principal: rgba(16, 55, 102, 0.12);
+  --linha-suave: rgba(16, 55, 102, 0.18);
+  --linha-normal: rgba(16, 55, 102, 0.32);
+  --linha-destaque: #103766;
+  --texto-principal: #0c2647;
+  --texto-secundario: #1e3d63;
+  --texto-opaco: #506f94;
+  --texto-sucesso: #15803d;
+  --fundo-etiqueta: rgba(16, 55, 102, 0.06);
+  --sombra-cartao: 0 4px 14px rgba(16, 55, 102, 0.08);
+}
+
+/* ==========================================================================
+   2. RESET E CONFIGURACOES GERAIS
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--fonte-texto);
+  background-color: var(--fundo-blueprint);
+  color: var(--texto-principal);
+  transition: var(--transicao-tema);
+  scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   3. MALHA DO PAPEL MILIMETRADO
+   ========================================================================== */
+.fundo-malha-blueprint {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(var(--grade-subdivisao) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade-subdivisao) 1px, transparent 1px),
+    linear-gradient(var(--grade-principal) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade-principal) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}
+
+.conteudo-geral {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 36px 20px 60px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   4. CABECALHO E NAVEGACAO
+   ========================================================================== */
+.cabecalho-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 22px;
+  background: var(--fundo-cartao);
+  border: 1.5px solid var(--linha-normal);
+  border-radius: 4px;
+  margin-bottom: 32px;
+  box-shadow: var(--sombra-cartao);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.bloco-autor {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.simbolo-autor {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--linha-destaque);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fundo-etiqueta);
+  font-family: var(--fonte-codigo);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--linha-destaque);
+}
+
+.nome-autor {
+  font-family: var(--fonte-codigo);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--texto-principal);
+}
+
+.subtitulo-autor {
+  font-size: 12px;
+  color: var(--texto-opaco);
+}
+
+.menu-navegacao {
+  display: flex;
+  gap: 6px;
+}
+
+.botao-aba {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--texto-opaco);
+  font-family: var(--fonte-codigo);
+  font-size: 13px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botao-aba:hover {
+  color: var(--texto-principal);
+  background: var(--fundo-etiqueta);
+  border-color: var(--linha-suave);
+}
+
+.botao-aba.ativo {
+  color: var(--texto-principal);
+  background: var(--fundo-etiqueta);
+  border-color: var(--linha-destaque);
+  font-weight: 700;
+}
+
+.botao-tema {
+  background: var(--fundo-etiqueta);
+  border: 1px solid var(--linha-normal);
+  border-radius: 3px;
+  color: var(--texto-principal);
+  font-family: var(--fonte-codigo);
+  font-size: 12px;
+  padding: 8px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.botao-tema:hover {
+  border-color: var(--linha-destaque);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+[data-tema="claro"] .botao-tema:hover {
+  background: rgba(16, 55, 102, 0.12);
+}
+
+/* ==========================================================================
+   5. PAINEIS DAS ABAS
+   ========================================================================== */
+.painel-aba {
+  display: none;
+  animation: surgimentoSuave 0.2s ease-out forwards;
+}
+
+.painel-aba.ativo {
+  display: block;
+}
+
+@keyframes surgimentoSuave {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cartao Padrao */
+.cartao-blueprint {
+  background: var(--fundo-cartao);
+  border: 1.5px solid var(--linha-normal);
+  border-radius: 4px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra-cartao);
+}
+
+.titulo-cartao {
+  font-family: var(--fonte-codigo);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--linha-suave);
+  padding-bottom: 10px;
+}
+
+/* ==========================================================================
+   6. SECAO QUEM SOU EU
+   ========================================================================== */
+.secao-perfil {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--linha-suave);
+}
+
+.caixa-avatar {
+  width: 88px;
+  height: 88px;
+  border: 1.5px solid var(--linha-destaque);
+  border-radius: 4px;
+  background: var(--fundo-etiqueta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--fonte-codigo);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--linha-destaque);
+}
+
+.info-perfil h1 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin-bottom: 4px;
+}
+
+.cargo-perfil {
+  font-family: var(--fonte-codigo);
+  font-size: 14px;
+  color: var(--texto-opaco);
+  margin-bottom: 10px;
+}
+
+.lista-metadados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.etiqueta-info {
+  font-family: var(--fonte-codigo);
+  font-size: 11px;
+  background: var(--fundo-etiqueta);
+  border: 1px solid var(--linha-suave);
+  padding: 4px 10px;
+  border-radius: 3px;
+  color: var(--texto-secundario);
+}
+
+.etiqueta-destaque {
+  border-color: var(--texto-sucesso);
+  color: var(--texto-sucesso);
+}
+
+.texto-apresentacao {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--texto-secundario);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lista-habilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item-habilidade {
+  font-family: var(--fonte-codigo);
+  font-size: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--linha-suave);
+  border-radius: 3px;
+  background: var(--fundo-etiqueta);
+  color: var(--texto-principal);
+  transition: all 0.2s ease;
+}
+
+.item-habilidade:hover {
+  border-color: var(--linha-destaque);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+[data-tema="claro"] .item-habilidade:hover {
+  background: rgba(16, 55, 102, 0.1);
+}
+
+/* ==========================================================================
+   7. SECAO PROJETOS
+   ========================================================================== */
+.barra-acoes-projetos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.grupo-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.botao-filtro {
+  background: transparent;
+  border: 1px solid var(--linha-suave);
+  border-radius: 3px;
+  color: var(--texto-opaco);
+  font-family: var(--fonte-codigo);
+  font-size: 12px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.botao-filtro:hover,
+.botao-filtro.ativo {
+  background: var(--fundo-etiqueta);
+  border-color: var(--linha-destaque);
+  color: var(--texto-principal);
+}
+
+.contador-projetos {
+  font-family: var(--fonte-codigo);
+  font-size: 12px;
+  color: var(--texto-opaco);
+}
+
+.grade-projetos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 22px;
+}
+
+.cartao-projeto {
+  background: var(--fundo-cartao);
+  border: 1.5px solid var(--linha-normal);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cartao-projeto:hover {
+  transform: translateY(-4px);
+  border-color: var(--linha-destaque);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+.previa-projeto {
+  height: 180px;
+  background: #040d1a;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid var(--linha-normal);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.75);
+}
+
+[data-tema="claro"] .previa-projeto {
+  background: #ffffff;
+  border-bottom: 2px solid var(--linha-normal);
+  box-shadow: inset 0 0 15px rgba(16, 55, 102, 0.1);
+}
+
+.previa-projeto iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+}
+
+.conteudo-projeto {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo-projeto {
+  font-family: var(--fonte-codigo);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin-bottom: 8px;
+}
+
+.descricao-projeto {
+  font-size: 13px;
+  color: var(--texto-secundario);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.etiquetas-projeto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.etiqueta-tecnologia {
+  font-family: var(--fonte-codigo);
+  font-size: 11px;
+  padding: 3px 8px;
+  border: 1px solid var(--linha-suave);
+  border-radius: 2px;
+  background: var(--fundo-etiqueta);
+  color: var(--texto-opaco);
+}
+
+.botao-abrir-projeto {
+  background: var(--fundo-etiqueta);
+  border: 1px solid var(--linha-normal);
+  color: var(--texto-principal);
+  font-family: var(--fonte-codigo);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.botao-abrir-projeto:hover {
+  border-color: var(--linha-destaque);
+  background: var(--linha-destaque);
+  color: var(--fundo-blueprint);
+}
+
+/* ==========================================================================
+   8. SECAO CONTATO E RODAPE
+   ========================================================================= */
+.grade-contato {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.botao-contato {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--fundo-cartao);
+  border: 1.5px solid var(--linha-normal);
+  border-radius: 4px;
+  color: var(--texto-principal);
+  text-decoration: none;
+  font-family: var(--fonte-codigo);
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.botao-contato:hover {
+  border-color: var(--linha-destaque);
+  background: var(--fundo-etiqueta);
+  transform: translateY(-2px);
+}
+
+.botao-contato svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--linha-destaque);
+}
+
+.rodape-principal {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--linha-suave);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--fonte-codigo);
+  font-size: 12px;
+  color: var(--texto-opaco);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   9. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 640px) {
+  .cabecalho-principal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .menu-navegacao {
+    justify-content: space-around;
+  }
+  .secao-perfil {
+    flex-direction: column;
+    text-align: center;
+  }
+  .lista-metadados {
+    justify-content: center;
+  }
+  .rodape-principal {
+    flex-direction: column;
+    text-align: center;
+  }
+}

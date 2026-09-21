@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronômetro & Relógio de Precisão Blueprint</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="clock-unit">
+    <div class="unit-header">
+      <div>
+        <span class="unit-code">MOD-TIME // 03</span>
+        <h2>CRONÔMETRO & RELÓGIO DE PRECISÃO</h2>
+      </div>
+      <span class="clock-status">60 FPS // PRECISION</span>
+    </div>
+
+    <!-- Mostrador Analógico Blueprint com Compass/Marcadores -->
+    <div class="dial-container">
+      <div class="clock-dial" id="clockDial">
+        <!-- Marcadores horários e subdivisões gerados por JS -->
+        <div class="dial-crosshair"></div>
+        <div class="dial-center-cap"></div>
+        
+        <!-- Ponteiros Técnicos -->
+        <div class="hand hand-hour" id="hourHand"></div>
+        <div class="hand hand-minute" id="minHand"></div>
+        <div class="hand hand-second" id="secHand"></div>
+      </div>
+    </div>
+
+    <!-- Visor Digital Secundário -->
+    <div class="digital-display">
+      <div class="display-mode-label" id="displayModeLabel">HORÁRIO LOCAL ATUAL</div>
+      <div class="time-readout" id="timeReadout">00:00:00.00</div>
+    </div>
+
+    <!-- Controles do Modo Cronômetro -->
+    <div class="stopwatch-controls">
+      <button id="toggleModeBtn" class="mode-btn">MODO: CRONÔMETRO</button>
+      <div class="stopwatch-actions" id="stopwatchActions" style="display: none;">
+        <button id="startStopBtn" class="action-btn-ctrl">INICIAR</button>
+        <button id="lapBtn" class="action-btn-ctrl">VOLTA (LAP)</button>
+        <button id="resetBtn" class="action-btn-ctrl">ZERAR</button>
+      </div>
+    </div>
+
+    <!-- Lista de Voltas (Laps) -->
+    <div class="laps-list-box" id="lapsBox" style="display: none;">
+      <div class="laps-header">REGISTRO DE VOLTAS</div>
+      <div class="laps-container" id="lapsContainer"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

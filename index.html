@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="escuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bernardo Diniz Balduino - Portfolio</title>
+  
+  <meta name="description" content="Portfolio de Bernardo Diniz Balduino - Estudante de Analise e Desenvolvimento de Sistemas (ADS)">
+
+  <!-- Estilo Blueprint Otimizado -->
+  <link rel="stylesheet" href="css/blueprint.css">
+
+  <!-- Tipografia Tecnica -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Malha Milimetrica de Fundo -->
+  <div class="fundo-malha-blueprint"></div>
+
+  <div class="conteudo-geral">
+    
+    <!-- Cabecalho Principal -->
+    <header class="cabecalho-principal">
+      <div class="bloco-autor">
+        <div class="simbolo-autor">B</div>
+        <div>
+          <div class="nome-autor">Bernardo Diniz Balduino</div>
+          <div class="subtitulo-autor">Estudante de ADS - 17 Anos</div>
+        </div>
+      </div>
+
+      <!-- Menu de Navegacao por Abas -->
+      <nav class="menu-navegacao" role="tablist">
+        <button class="botao-aba ativo" data-aba="aba-perfil" role="tab" aria-selected="true">Quem sou eu</button>
+        <button class="botao-aba" data-aba="aba-projetos" role="tab" aria-selected="false">Projetos</button>
+        <button class="botao-aba" data-aba="aba-contato" role="tab" aria-selected="false">Contato</button>
+      </nav>
+
+      <!-- Botao de Alternar Tema -->
+      <button id="botaoAlternarTema" class="botao-tema" title="Alternar entre modo claro e escuro">
+        <span id="textoModoTema">Modo Escuro</span>
+      </button>
+    </header>
+
+    <!-- Conteudo Principal -->
+    <main>
+
+      <!-- ========================================================
+           ABA 1: QUEM SOU EU
+           ======================================================== -->
+      <section id="aba-perfil" class="painel-aba ativo" role="tabpanel">
+        
+        <!-- Cartao de Apresentacao -->
+        <div class="cartao-blueprint">
+          <div class="secao-perfil">
+            <div class="caixa-avatar">BDB</div>
+            <div class="info-perfil">
+              <h1>Bernardo Diniz Balduino</h1>
+              <div class="cargo-perfil">Analise e Desenvolvimento de Sistemas (ADS)</div>
+              <div class="lista-metadados">
+                <span class="etiqueta-info">17 anos</span>
+                <span class="etiqueta-info">Estudante</span>
+                <span class="etiqueta-info etiqueta-destaque">Aprendendo e Praticando</span>
+                <span class="etiqueta-info">Desenvolvimento Web</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Texto de Apresentacao -->
+          <div class="texto-apresentacao">
+            <p>
+              Ola! Meu nome e <strong>Bernardo Diniz Balduino</strong>, tenho 17 anos e sou estudante de <strong>Analise e Desenvolvimento de Sistemas (ADS)</strong>.
+            </p>
+            <p>
+              Estou construindo minha formacao na area de tecnologia atraves da pratica constante, desenvolvendo projetos web, interfaces e aprimorando minha logica de programacao.
+            </p>
+            <p>
+              Este portfolio foi estruturado no estilo blueprint para reunir meus projetos, codigos-fonte e demonstrar as solucoes que desenvolvo na pratica.
+            </p>
+          </div>
+        </div>
+
+        <!-- Conhecimentos e Tecnologias -->
+        <div class="cartao-blueprint">
+          <div class="titulo-cartao">Tecnologias e Estudos</div>
+          <div class="lista-habilidades">
+            <span class="item-habilidade">HTML5</span>
+            <span class="item-habilidade">CSS3 (Flexbox e Grid)</span>
+            <span class="item-habilidade">JavaScript</span>
+            <span class="item-habilidade">Logica de Programacao</span>
+            <span class="item-habilidade">Modelagem e Analise de Sistemas</span>
+            <span class="item-habilidade">Git e GitHub</span>
+            <span class="item-habilidade">Resolucao de Problemas</span>
+            <span class="item-habilidade">mySql</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================================
+           ABA 2: PROJETOS
+           ======================================================== -->
+      <section id="aba-projetos" class="painel-aba" role="tabpanel">
+        
+        <!-- Barra de Filtros -->
+        <div class="barra-acoes-projetos">
+          <div class="grupo-filtros">
+            <button class="botao-filtro ativo" data-filtro="todos">Todos</button>
+            <button class="botao-filtro" data-filtro="ferramentas">Ferramentas</button>
+            <button class="botao-filtro" data-filtro="seguranca">Seguranca</button>
+            <button class="botao-filtro" data-filtro="interativo">Interativo</button>
+          </div>
+          <div class="contador-projetos" id="contadorProjetos">
+            3 projetos listados
+          </div>
+        </div>
+
+        <!-- Grade de Cartoes dos Projetos -->
+        <div class="grade-projetos" id="gradeProjetos">
+          <!-- Conteudo inserido dinamicamente via JavaScript -->
+        </div>
+
+      </section>
+
+      <!-- ========================================================
+           ABA 3: CONTATO
+           ======================================================== -->
+      <section id="aba-contato" class="painel-aba" role="tabpanel">
+        
+        <div class="cartao-blueprint">
+          <div class="titulo-cartao">Canais de Contato</div>
+          <p style="color: var(--texto-secundario); margin-bottom: 20px; font-size: 14px;">
+            Sinta-se a vontade para entrar em contato para conversar sobre tecnologia, desenvolvimento ou oportunidades.
+          </p>
+
+          <div class="grade-contato">
+            <a href="mailto:bernardodiniz@exemplo.com" class="botao-contato">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>E-mail</span>
+            </a>
+
+            <a href="https://github.com" target="_blank" class="botao-contato">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span>GitHub</span>
+            </a>
+
+            <a href="https://linkedin.com" target="_blank" class="botao-contato">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Rodape -->
+    <footer class="rodape-principal">
+      <div>Bernardo Diniz Balduino - ADS</div>
+      <div>Portfolio Blueprint - 2026</div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/projects-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
