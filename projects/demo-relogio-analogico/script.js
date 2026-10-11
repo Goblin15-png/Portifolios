@@ -40,7 +40,9 @@ class PrecisionTimeInstrument {
     for (let i = 0; i < 60; i++) {
       const mark = document.createElement('div');
       mark.className = `dial-mark ${i % 5 === 0 ? 'major' : ''}`;
-      mark.style.transform = `translate(-50%, -100%) rotate(${i * 6}deg) translateY(-106px)`;
+      // Posiciona cada traço pelo centro do mostrador e o desloca radialmente.
+      // O primeiro fica às 12h; os demais avançam 6° até completar 60 divisões.
+      mark.style.transform = `translate(-50%, -50%) rotate(${i * 6}deg) translateY(-106px)`;
       this.clockDial.appendChild(mark);
     }
   }

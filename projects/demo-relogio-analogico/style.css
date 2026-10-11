@@ -146,7 +146,7 @@ body {
   width: 2px;
   height: 10px;
   background: var(--text-muted);
-  transform-origin: 50% 110px;
+  transform-origin: 50% 50%;
 }
 
 .dial-mark.major {
